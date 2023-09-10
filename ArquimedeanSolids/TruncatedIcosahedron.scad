@@ -8,12 +8,13 @@ edge = 30; // [10:100]
 // Center of the solid or stand over a face
 position = "Center"; // ["Center", "Face"]
 
-module TruncatedIcosahedron(edge=20, position="Face"){  // tI
+module TruncatedIcosahedron ( edge = 30, position = "Face"){  // tI
     // Constants
     phi = (1+sqrt(5))/2; // Golden ratio = 1,618...
     
-    // Invariants
-    diAngleIcosahedron = acos(-sqrt(5)/3); // dihedral angle of Icosahedron = 138,1897...
+    // Dihedral angles
+    diAngleHexHex = acos(-sqrt(5)/3); // hexagonal-hexagonal faces = 138,1897...
+    diAnglePentHex = acos (-sqrt((5+2*sqrt(5))/15)); // pentagonal-hexagonal faces = 142.62°
     
     // Relations
     rInsHexagon = phi^2/(2*sqrt(3));
@@ -33,8 +34,9 @@ module TruncatedIcosahedron(edge=20, position="Face"){  // tI
     t3 = (1 * phi) * s;
     
     
-    // Definition of points and faces V = 60 / F3 = 20 / F10 = 12
-    Dpoints = [
+    // Definition of points and faces V = 60 / F = 32 ( 12 pentagons + 20 hexagons )
+    // Even permutations of ( ±3φ, ±1, 0) and ( ±(2*φ), ±(2+φ), ±1) and ( ±(2*φ+1), ±2, ±φ)
+    tIpoints = [
     
         // Build 3 rectangles on plane XY/XZ/YZ
         [+p1, +p2,   0], [-p1, +p2,   0], [+p1, -p2,   0], [-p1, -p2,   0],    // XY
@@ -63,7 +65,7 @@ module TruncatedIcosahedron(edge=20, position="Face"){  // tI
         
         ];
          
-    Dfaces = [
+    tIfaces = [
         // + X
         [ 36, 12, 16, 40,  0], [ 42, 18, 14, 38,  2],           // Pentagons
         [  2, 38, 24, 20, 36, 0], [ 40, 21, 25, 42,  2,  0],    // Hexagons
@@ -99,14 +101,14 @@ module TruncatedIcosahedron(edge=20, position="Face"){  // tI
         ];
     
     // Polyhedron stands on xy plane centered on the center of the face or centered on the center of polyhedron
-    if(position=="Face"){
-        translate([0,0,3*edge*rInsHexagon])
-            rotate([90-diAngleIcosahedron/2, 0, 0])
-                polyhedron(Dpoints,Dfaces);
+    if ( position == "Face"){
+        translate ([ 0, 0, 3*edge*rInsHexagon])
+            rotate ([ 90-diAngleHexHex/2, 0, 0])
+                polyhedron ( tIpoints, tIfaces);
         }
         
-    else if(position=="Center") {
-        polyhedron(Dpoints,Dfaces);        
+    else if ( position == "Center") {
+        polyhedron ( tIpoints, tIfaces);        
         } 
 }
 /* **RENDERING OF SOLIDS** */
