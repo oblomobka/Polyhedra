@@ -143,7 +143,7 @@ module Rhombicosidodecahedron ( edge = 30, position="Face"){  // eD
     
     // Polyhedron stands on xy plane centered on the center of the face or centered on the center of polyhedron
     if ( position == "Face"){
-        translate ([ 0, 0, edge*rInsPentagon])
+        translate ([ 0, 0, 1*edge*rInsPentagon+0*edge*rInsSquare])
             rotate ([ 0*diAngleTriSqu, 1*diAngleSquPent, 0])
                 polyhedron ( eDpoints, eDfaces);
             //color("red", 0.4){ sphere (edge*rCirRhombicosidodecahedron);}
