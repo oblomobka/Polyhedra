@@ -1,6 +1,8 @@
 // Sharpohedron
 // (C) @oblomobka - 2024.02
 // GPL license
+// https://archive.org/details/bim_eighteenth-century_geometry-improvd-1-by_sharp-abraham_1717/page/73/mode/2up
+// https://georgehart.com/sharp/
 
 /* **CUSTOMIZER VARIABLES** */
 // Edge
@@ -10,10 +12,7 @@ position = "Center"; //["Center", "Face"]
 
 /* **MODULES** */
 module Sharpohedron ( h = 30, position = "Face"){
-    
-    // Invariants
-    diAngleCube = 90; // dihedral angle of cube
-    
+        
     // Relations
     rCirCube = sqrt(3)/2; // radius of a circumscribed sphere for edge = 1 / = 1,061...
     rInsCube = 1/2; // radius of a inscribed sphere for edge = 1 / = 0,5
@@ -21,9 +20,9 @@ module Sharpohedron ( h = 30, position = "Face"){
     
     // Variables
     a = h/2;
-    rl = 1*h/3; // factor para el rombo largo
+    rl = h/3;       // rhombus factor
     b = a-rl;
-    k = 1*h/5; // // factor para la kite
+    k = rl*3/5;     // kite factor
     c = a-k;
     
     // Definition of points and faces V = 20 / F = 18
@@ -44,8 +43,8 @@ module Sharpohedron ( h = 30, position = "Face"){
         // Rombos
         [  0,  7,  9,  3], [  0, 10, 15,  5], [  0,  2, 14, 11],
         [  9,  6, 15, 17], [  9, 16, 14,  1], [ 14, 18, 15, 12],
-        
-        [  0,  3,  4,  2], [  0, 5, 8, 7], [  0, 11, 13, 10],
+        // Kites
+        [  0,  3,  4,  2], [  0,  5,  8,  7], [  0, 11, 13, 10],
         [  9,  1,  4,  3], [  9,  7,  8,  6], [  9, 17, 19, 16],
         [ 14,  2,  4,  1], [ 14, 12, 13, 11], [ 14, 16, 19, 18],
         [ 15,  6,  8,  5], [ 15, 10, 13, 12], [ 15, 18, 19, 17]
@@ -61,7 +60,4 @@ module Sharpohedron ( h = 30, position = "Face"){
 
 
 /* **RENDERING OF SOLIDS** */ 
-union(){
 Sharpohedron ( h = h, position = position);
-//rotate (90){Sharpohedron ( h = h, position = position);}
-}
