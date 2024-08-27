@@ -4,7 +4,7 @@
 
 /* **CUSTOMIZER VARIABLES** */
 // Edge
-edge = 30; //[10:100]
+edge = 40; //[10:100]
 // Center of the solid or stand over a face
 position = "Center"; //["Center", "Face"]
 
