@@ -51,7 +51,7 @@ module TruncatedIcosidodecahedron ( edge = 30, position="Face"){  // bD
     bu2 = 3 * s;
     bu3 = (2*phi) * s;
     
-}
+
     // Definition of points and faces V = 120 / F = 62 ( 20 hexagons + 30 squares + 12 decagons )
     // Even permutations of (±1/φ, ±1/φ, ±(3 + φ)) (±2/φ, ±φ, ±(1 + 2*φ)) (±1/φ, ±φ^2, ±(-1 + 3*φ)) (±(2*φ - 1), ±2, ±(2 + 1*φ)) (±φ, ±3, ±2*φ)
     
